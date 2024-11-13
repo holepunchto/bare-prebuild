@@ -16,13 +16,15 @@ module.exports = async function prebuild (base = '.', opts = {}) {
 
     await fs.cp(base, cwd)
 
-    await spawn('npm', ['install'], { cwd })
+    try {
+      await spawn('npm', ['install'], { cwd })
 
-    await make.generate({ ...opts, cwd })
-    await make.build({ ...opts, cwd })
-    await make.install({ ...opts, cwd, prefix: path.join(base, 'prebuilds') })
-
-    await fs.rm(cwd)
+      await make.generate({ ...opts, cwd })
+      await make.build({ ...opts, cwd })
+      await make.install({ ...opts, cwd, prefix: path.join(base, 'prebuilds') })
+    } finally {
+      await fs.rm(cwd)
+    }
   }
 
   const modules = await fs.openDir(path.join(base, 'node_modules'))

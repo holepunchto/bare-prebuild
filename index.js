@@ -1,7 +1,7 @@
 const path = require('path')
 const make = require('bare-make')
 const fs = require('./lib/fs')
-const spawn = require('./lib/spawn')
+const run = require('./lib/run')
 
 module.exports = async function prebuild (base = '.', opts = {}) {
   if (typeof base === 'object' && base !== null) {
@@ -17,7 +17,7 @@ module.exports = async function prebuild (base = '.', opts = {}) {
     await fs.cp(base, cwd)
 
     try {
-      await spawn('npm', ['install'], { cwd })
+      await run('npm', ['install'], { cwd })
 
       await make.generate({ ...opts, cwd })
       await make.build({ ...opts, cwd })

@@ -11,7 +11,11 @@ module.exports = async function prebuild (base = '.', opts = {}) {
 
   base = path.resolve(base)
 
-  if (await fs.exists(path.join(base, 'CMakeLists.txt'))) {
+  const pkg = JSON.parse(await fs.readFile(path.join(base, 'package.json')))
+
+  if (typeof pkg !== 'object' || pkg === null) return
+
+  if (pkg.addon) {
     const cwd = await fs.tempDir()
 
     await fs.cp(base, cwd)
@@ -31,7 +35,7 @@ module.exports = async function prebuild (base = '.', opts = {}) {
 
   if (modules) {
     for await (const entry of modules) {
-      await prebuild(path.join(entry.path, entry.name), opts)
+      await prebuild(path.join(entry.parentPath, entry.name), opts)
     }
   }
 }

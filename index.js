@@ -39,7 +39,7 @@ module.exports = async function prebuild(base = '.', opts = {}) {
 
   if (modules) {
     for await (const entry of modules) {
-      await prebuild(path.join(entry.parentPath, entry.name), opts)
+      await prebuild(path.join(base, 'node_modules', entry.name), opts)
     }
   }
 }

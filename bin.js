@@ -14,10 +14,22 @@ const cmd = command(
   flag('--simulator', 'Build for a simulator'),
   flag('--debug|-d', 'Configure a debug build'),
   flag('--sanitize <name>', 'Enable a sanitizer'),
-  flag('--define|-D <var>[:<type>]=<value>', 'Create a build variable cache entry').multiple(),
+  flag(
+    '--define|-D <var>[:<type>]=<value>',
+    'Create a build variable cache entry'
+  ).multiple(),
   flag('--verbose', 'Enable verbose output'),
   async (cmd) => {
-    const { version, platform, arch, simulator, debug, sanitize, define, verbose } = cmd.flags
+    const {
+      version,
+      platform,
+      arch,
+      simulator,
+      debug,
+      sanitize,
+      define,
+      verbose
+    } = cmd.flags
     const { base = '.' } = cmd.args
 
     if (version) return console.log(`v${pkg.version}`)

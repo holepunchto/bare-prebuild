@@ -3,7 +3,7 @@ const make = require('bare-make')
 const fs = require('./lib/fs')
 const run = require('./lib/run')
 
-module.exports = async function prebuild (base = '.', opts = {}) {
+module.exports = async function prebuild(base = '.', opts = {}) {
   if (typeof base === 'object' && base !== null) {
     opts = base
     base = '.'
@@ -25,7 +25,11 @@ module.exports = async function prebuild (base = '.', opts = {}) {
 
       await make.generate({ ...opts, cwd })
       await make.build({ ...opts, cwd })
-      await make.install({ ...opts, cwd, prefix: path.join(base, 'prebuilds') })
+      await make.install({
+        ...opts,
+        cwd,
+        prefix: path.join(base, 'prebuilds')
+      })
     } finally {
       await fs.rm(cwd)
     }

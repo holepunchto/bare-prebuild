@@ -50,12 +50,12 @@
   },
   "homepage": "https://github.com/holepunchto/bare-prebuild#readme",
   "dependencies": {
-    "bare-fs": "^3.1.1",
+    "bare-fs": "^4.0.1",
     "bare-make": "^1.4.0",
     "bare-os": "^3.2.1",
     "bare-path": "^3.0.0",
-    "bare-process": "^3.0.0",
-    "bare-subprocess": "^4.0.3",
+    "bare-process": "^4.0.0",
+    "bare-subprocess": "^5.0.2",
     "paparam": "^1.5.0"
   },
   "devDependencies": {

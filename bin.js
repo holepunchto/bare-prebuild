@@ -12,6 +12,7 @@ const cmd = command(
   flag('--platform|-p <name>', 'The operating system platform to build for'),
   flag('--arch|-a <name>', 'The operating system architecture to build for'),
   flag('--simulator', 'Build for a simulator'),
+  flag('--environment|-e <name>', 'The environment to build for'),
   flag('--debug|-d', 'Configure a debug build'),
   flag('--sanitize <name>', 'Enable a sanitizer'),
   flag(
@@ -25,6 +26,7 @@ const cmd = command(
       platform,
       arch,
       simulator,
+      environment,
       debug,
       sanitize,
       define,
@@ -39,6 +41,7 @@ const cmd = command(
         platform,
         arch,
         simulator,
+        environment,
         debug,
         sanitize,
         define,

@@ -29,6 +29,7 @@ Options include:
   platform: os.platform(),
   arch: os.arch(),
   simulator: false,
+  environment: null,
   sanitize,
   debug,
   define,
@@ -47,6 +48,7 @@ Flags include:
 --platform|-p <name>
 --arch|-a <name>
 --simulator
+--environment|-e <name>
 --debug|-d
 --sanitize <name>
 --define|-D <var>[:<type>]=<value>

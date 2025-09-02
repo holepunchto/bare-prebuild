@@ -40,7 +40,7 @@ Options include:
 
 ## CLI
 
-#### `bare-prebuild [flags]`
+#### `bare-prebuild [flags] [base]`
 
 Flags include:
 

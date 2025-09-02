@@ -7,7 +7,7 @@ const prebuild = require('.')
 const cmd = command(
   pkg.name,
   summary(pkg.description),
-  arg('<base>'),
+  arg('[base]'),
   flag('--version|-v', 'Print the current version'),
   flag('--platform|-p <name>', 'The operating system platform to build for'),
   flag('--arch|-a <name>', 'The operating system architecture to build for'),

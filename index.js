@@ -11,9 +11,12 @@ module.exports = async function prebuild(base = '.', opts = {}) {
 
   base = path.resolve(base)
 
-  const pkg = JSON.parse(await fs.readFile(path.join(base, 'package.json')))
-
-  if (typeof pkg !== 'object' || pkg === null) return
+  let pkg
+  try {
+    pkg = require(path.join(base, 'package.json'))
+  } catch {
+    return
+  }
 
   if (pkg.addon) {
     const cwd = await fs.tempDir()
@@ -35,11 +38,14 @@ module.exports = async function prebuild(base = '.', opts = {}) {
     }
   }
 
-  const modules = await fs.openDir(path.join(base, 'node_modules'))
+  let modules
+  try {
+    modules = await fs.openDir(path.join(base, 'node_modules'))
+  } catch {
+    return
+  }
 
-  if (modules) {
-    for await (const entry of modules) {
-      await prebuild(path.join(base, 'node_modules', entry.name), opts)
-    }
+  for await (const entry of modules) {
+    await prebuild(path.join(base, 'node_modules', entry.name), opts)
   }
 }

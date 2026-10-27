@@ -37,7 +37,9 @@
     }
   },
   "scripts": {
-    "test": "prettier . --check"
+    "format": "prettier --write . && lunte --fix",
+    "lint": "prettier --check . && lunte",
+    "test": "brittle-bare --coverage test.js"
   },
   "repository": {
     "type": "git",
@@ -51,15 +53,16 @@
   "homepage": "https://github.com/holepunchto/bare-prebuild#readme",
   "dependencies": {
     "bare-fs": "^4.0.1",
-    "bare-make": "^1.4.0",
+    "bare-make": "^2.1.0",
     "bare-os": "^3.2.1",
     "bare-path": "^3.0.0",
     "bare-process": "^4.0.0",
-    "bare-subprocess": "^5.0.2",
+    "bare-subprocess": "^6.2.2",
     "paparam": "^1.5.0"
   },
   "devDependencies": {
     "brittle": "^3.2.1",
+    "lunte": "^1.8.6",
     "prettier": "^3.3.3",
     "prettier-config-holepunch": "^2.0.0"
   }
